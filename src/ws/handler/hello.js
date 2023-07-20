@@ -11,9 +11,9 @@ export function handleHello(client, payload) {
     client.ws.enableCapability('priorityMappings');
 
     client.ws.sendPayload('brand', {
-        author: 'PlaceNL',
+        author: 'Visne',
         name: 'Userscript',
-        version: USERSCRIPT_REVISION + (window.PLACENL_USERSCRIPT_AUTO_UPDATER ? '-auto' : '')
+        version: USERSCRIPT_REVISION + (window.VEGAN_R_PLACE_USERSCRIPT_AUTO_UPDATER ? '-auto' : '')
     });
 
     client.ws.sendPayload('getOrder');

@@ -4,7 +4,7 @@ import {USERSCRIPT_REVISION} from './constants.js';
 import {lang} from './lang/language.js';
 
 export const HUDToast = Toastify({
-    text: 'PlaceNL Userscript',
+    text: 'Vegan /r/place Userscript',
     duration: -1,
     close: false,
     gravity: 'bottom',
@@ -33,7 +33,7 @@ export function setHUDBody(body) {
 }
 
 function reshowHUD() {
-    HUDToast.options.text = `PlaceNL Userscript (version ${USERSCRIPT_REVISION.slice(0, 7)}${window.PLACENL_USERSCRIPT_AUTO_UPDATER ? '-auto' : ''}) | ${HUDToast.title}\n${HUDToast.body}`;
+    HUDToast.options.text = `Vegan /r/place Userscript (version ${USERSCRIPT_REVISION.slice(0, 7)}${window.VEGAN_R_PLACE_USERSCRIPT_AUTO_UPDATER ? '-auto' : ''}) | ${HUDToast.title}\n${HUDToast.body}`;
     HUDToast.hideToast();
     HUDToast.toastElement.parentNode.removeChild(HUDToast.toastElement);
     HUDToast.showToast();
@@ -78,9 +78,9 @@ export function createToastifyStyle() {
 }
 
 export function hookIntoAutoUpdater() {
-    if (!window.PLACENL_USERSCRIPT_AUTO_UPDATER) return;
+    if (!window.VEGAN_R_PLACE_USERSCRIPT_AUTO_UPDATER) return;
 
-    window.PLACENL_USERSCRIPT_AUTO_UPDATER.updateHook = () => {
+    window.VEGAN_R_PLACE_USERSCRIPT_AUTO_UPDATER.updateHook = () => {
         infoNotification(lang().TOAST_UPDATE_DETECTED);
     };
 }

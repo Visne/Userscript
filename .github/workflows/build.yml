@@ -28,5 +28,5 @@ jobs:
           prerelease: true
           title: Latest build
           files: |
-            dist/placenl-userscript.user.js
-            placenl-userscript-autoupdater.user.js
+            dist/vegan-r-place-userscript.user.js
+            vegan-r-place-userscript-autoupdater.user.js
