@@ -11,11 +11,11 @@ export const HUDToast = Toastify({
     position: 'right',
     style: {
         background: '#008230',
-        opacity: 0.75,
+        opacity: 0.80,
         color: 'white',
-        borderWidth: '2px',
+        borderWidth: '5px',
         borderStyle: 'solid',
-        borderImage: 'linear-gradient(180deg, #00B33E 33.3%, white 33.3%, white 66.6%, #0078C9 66.6%) 1 1',
+        borderImage: 'url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNTAwIiBoZWlnaHQ9IjMwMCI+PHBhdGggZmlsbD0iIzAwNzdjOCIgZD0iTTAsMEg1MDBWMzAwSDB6Ii8+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTAsMEg1MDBMMjUwLDMwMHoiLz48cGF0aCBmaWxsPSIjMDBiMTQwIiBkPSJNMTAwLDBINDAwTDI1MCwxODB6Ii8+PC9zdmc+") 40 20 / 5px / 0 stretch',
         zIndex: 100000,
         transition: 'none'
     }
