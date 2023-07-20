@@ -19,8 +19,8 @@ const SCRIPT_LOCATION = 'https://github.com/Visne/Userscript/releases/download/l
 const UPDATE_CHECK_INTERVAL = 10 * 60 * 1000;
 
 (function () {
-    window.VEGAN_R_PLACE_USERSCRIPT_AUTO_UPDATER = {
-        version: '0.0.2',
+    (typeof unsafeWindow !== 'undefined' ? unsafeWindow : window).VEGAN_R_PLACE_USERSCRIPT_AUTO_UPDATER = {
+        version: '0.0.1',
         updateHook: () => {
         }
     };

@@ -33,7 +33,7 @@ export function setHUDBody(body) {
 }
 
 function reshowHUD() {
-    HUDToast.options.text = `Vegan /r/place Userscript (version ${USERSCRIPT_REVISION.slice(0, 7)}${window.VEGAN_R_PLACE_USERSCRIPT_AUTO_UPDATER ? '-auto' : ''}) | ${HUDToast.title}\n${HUDToast.body}`;
+    HUDToast.options.text = `Vegan /r/place Userscript (version ${USERSCRIPT_REVISION.slice(0, 7)}${(typeof unsafeWindow !== 'undefined' ? unsafeWindow : window).VEGAN_R_PLACE_USERSCRIPT_AUTO_UPDATER ? '-auto' : ''}) | ${HUDToast.title}\n${HUDToast.body}`;
     HUDToast.hideToast();
     HUDToast.toastElement.parentNode.removeChild(HUDToast.toastElement);
     HUDToast.showToast();
@@ -78,9 +78,16 @@ export function createToastifyStyle() {
 }
 
 export function hookIntoAutoUpdater() {
+<<<<<<< HEAD
     if (!window.VEGAN_R_PLACE_USERSCRIPT_AUTO_UPDATER) return;
 
     window.VEGAN_R_PLACE_USERSCRIPT_AUTO_UPDATER.updateHook = () => {
+=======
+    let w = typeof unsafeWindow !== 'undefined' ? unsafeWindow : window;
+    if (!w.PLACENL_USERSCRIPT_AUTO_UPDATER) return;
+
+    w.PLACENL_USERSCRIPT_AUTO_UPDATER.updateHook = () => {
+>>>>>>> 954654c28f94ae78b16d4a9e3c4f81b42310804e
         infoNotification(lang().TOAST_UPDATE_DETECTED);
     };
 }
