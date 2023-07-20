@@ -78,16 +78,10 @@ export function createToastifyStyle() {
 }
 
 export function hookIntoAutoUpdater() {
-<<<<<<< HEAD
-    if (!window.VEGAN_R_PLACE_USERSCRIPT_AUTO_UPDATER) return;
-
-    window.VEGAN_R_PLACE_USERSCRIPT_AUTO_UPDATER.updateHook = () => {
-=======
     let w = typeof unsafeWindow !== 'undefined' ? unsafeWindow : window;
-    if (!w.PLACENL_USERSCRIPT_AUTO_UPDATER) return;
+    if (!w.VEGAN_R_PLACE_USERSCRIPT_AUTO_UPDATER) return;
 
-    w.PLACENL_USERSCRIPT_AUTO_UPDATER.updateHook = () => {
->>>>>>> 954654c28f94ae78b16d4a9e3c4f81b42310804e
+    w.VEGAN_R_PLACE_USERSCRIPT_AUTO_UPDATER.updateHook = () => {
         infoNotification(lang().TOAST_UPDATE_DETECTED);
     };
 }
