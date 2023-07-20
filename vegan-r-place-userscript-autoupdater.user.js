@@ -20,7 +20,7 @@ const UPDATE_CHECK_INTERVAL = 10 * 60 * 1000;
 
 (function () {
     window.VEGAN_R_PLACE_USERSCRIPT_AUTO_UPDATER = {
-        version: '0.0.1',
+        version: '0.0.2',
         updateHook: () => {
         }
     };

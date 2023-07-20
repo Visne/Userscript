@@ -10,12 +10,12 @@ export const HUDToast = Toastify({
     gravity: 'bottom',
     position: 'right',
     style: {
-        background: '#7FFF00',
+        background: '#008230',
         opacity: 0.75,
         color: 'white',
         borderWidth: '2px',
         borderStyle: 'solid',
-        borderImage: 'linear-gradient(180deg, green 33.3%, white 33.3%, white 66.6%, lightblue 66.6%) 1 1',
+        borderImage: 'linear-gradient(180deg, #00B33E 33.3%, white 33.3%, white 66.6%, #0078C9 66.6%) 1 1',
         zIndex: 100000,
         transition: 'none'
     }
@@ -48,8 +48,8 @@ export function infoNotification(title, body = undefined) {
         position: 'right',
         stopOnFocus: true,
         style: {
-            background: '#001F3F',
-            border: '2.5px solid #0074D9',
+            background: '#008230',
+            border: '2.5px solid #00B33E',
             zIndex: 1000
         }
     }).showToast();
@@ -64,8 +64,8 @@ export function warningNotification(title, body = undefined) {
         position: 'right',
         stopOnFocus: true,
         style: {
-            background: '#7FFF00',
-            border: '2.5px solid #5DFC0A',
+            background: '#930000',
+            border: '2.5px solid #FF0000',
             zIndex: 1000
         }
     }).showToast();
