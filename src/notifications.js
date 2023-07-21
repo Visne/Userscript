@@ -35,16 +35,16 @@ export function setHUDBody(body) {
 }
 
 function reshowHUD() {
-    HUDToast.options.text = `Vegan /r/place Userscript (version ${USERSCRIPT_REVISION.slice(0, 7)}${window.VEGAN_R_PLACE_USERSCRIPT_AUTO_UPDATER ? '-auto' : ''}) | ${HUDToast.title}\n${HUDToast.body}`;
+    HUDToast.options.text = `Vegan /r/place Userscript (version ${USERSCRIPT_REVISION.slice(0, 7)}${(typeof unsafeWindow !== 'undefined' ? unsafeWindow : window).VEGAN_R_PLACE_USERSCRIPT_AUTO_UPDATER ? '-auto' : ''}) | ${HUDToast.title}\n${HUDToast.body}`;
     HUDToast.hideToast();
     HUDToast.toastElement.parentNode.removeChild(HUDToast.toastElement);
     HUDToast.showToast();
 }
 
-export function infoNotification(title, body = undefined) {
+export function infoNotification(title, body = undefined, duration = 5000) {
     Toastify({
         text: (body ? (title + '\n' + body) : title),
-        duration: 5000,
+        duration,
         close: false,
         gravity: 'top',
         position: 'right',
@@ -57,10 +57,10 @@ export function infoNotification(title, body = undefined) {
     }).showToast();
 }
 
-export function warningNotification(title, body = undefined) {
+export function warningNotification(title, body = undefined, duration = 10000) {
     Toastify({
         text: (body ? (title + '\n' + body) : title),
-        duration: 10000,
+        duration,
         close: false,
         gravity: 'top',
         position: 'right',
@@ -80,9 +80,10 @@ export function createToastifyStyle() {
 }
 
 export function hookIntoAutoUpdater() {
-    if (!window.VEGAN_R_PLACE_USERSCRIPT_AUTO_UPDATER) return;
+    let w = typeof unsafeWindow !== 'undefined' ? unsafeWindow : window;
+    if (!w.VEGAN_R_PLACE_USERSCRIPT_AUTO_UPDATER) return;
 
-    window.VEGAN_R_PLACE_USERSCRIPT_AUTO_UPDATER.updateHook = () => {
+    w.VEGAN_R_PLACE_USERSCRIPT_AUTO_UPDATER.updateHook = () => {
         infoNotification(lang().TOAST_UPDATE_DETECTED);
     };
 }

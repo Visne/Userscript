@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Vegan /r/place Userscript (Autoupdater)
 // @namespace    https://github.com/Visne/Userscript
-// @version      0.0.1
+// @version      0.0.2
 // @description  The easiest way to run our automated placer and keep it up to date, right from your browser
 // @author       Visne
 // @match        https://www.reddit.com/r/place/*
@@ -19,8 +19,8 @@ const SCRIPT_LOCATION = 'https://github.com/Visne/Userscript/releases/download/l
 const UPDATE_CHECK_INTERVAL = 10 * 60 * 1000;
 
 (function () {
-    window.VEGAN_R_PLACE_USERSCRIPT_AUTO_UPDATER = {
-        version: '0.0.2',
+    (typeof unsafeWindow !== 'undefined' ? unsafeWindow : window).VEGAN_R_PLACE_USERSCRIPT_AUTO_UPDATER = {
+        version: '0.0.1',
         updateHook: () => {
         }
     };
@@ -51,7 +51,7 @@ const UPDATE_CHECK_INTERVAL = 10 * 60 * 1000;
                         if (scriptData === newScriptData) return;
 
                         // Give the userscript some time to display its update message
-                        await window.VEGAN_R_PLACE_USERSCRIPT_AUTO_UPDATER.updateHook();
+                        await (typeof unsafeWindow !== 'undefined' ? unsafeWindow : window).VEGAN_R_PLACE_USERSCRIPT_AUTO_UPDATER.updateHook();
                         setTimeout(() => window.location.reload(), 5000);
                     }
                 });

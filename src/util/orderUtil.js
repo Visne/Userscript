@@ -5,11 +5,11 @@ export function getIncorrectPixels(client) {
 
     const orderReference = client.orderReference.getImageData(0, 0, client.orderReference.canvas.width, client.orderReference.canvas.height);
     const orderPriority = client.orderPriority.getImageData(0, 0, client.orderPriority.canvas.width, client.orderPriority.canvas.height);
-    const placeReference = client.orderReference.getImageData(0, 0, client.placeReference.canvas.width, client.placeReference.canvas.height);
+    const placeReference = client.placeReference.getImageData(0, 0, client.placeReference.canvas.width, client.placeReference.canvas.height);
 
     for (let y = 0; y < orderReference.height; y++) {
         for (let x = 0; x < orderReference.width; x++) {
-            const i = (y * orderReference.height) + x;
+            const i = ((y * orderReference.width) + x) * 4;
             const a = orderReference.data[i + 3];
             if (a === 0) continue;
 
@@ -24,7 +24,8 @@ export function getIncorrectPixels(client) {
             // this pixel is right
             if (r === currentR && g === currentG && b === currentB) continue;
 
-            const priority = getPriority(orderPriority.data[i], orderPriority.data[i + 1], orderPriority.data[i + 2], orderPriority.data[i + 3]);
+            let priority = getPriority(orderPriority.data[i], orderPriority.data[i + 1], orderPriority.data[i + 2], orderPriority.data[i + 3]);
+            priority += Math.floor(Math.random() * 10_000); // increase randomness
             wrong.push([[x, y, [r, g, b]], priority]);
         }
     }
