@@ -1,7 +1,7 @@
 import {shuffle} from 'weighted-shuffle'; // your ide may scream that this is wrong, but it is not
 
-const LIGHT_COLORS = ['#FFD635', '#FFF8B8', '#FFFFFF']
-const DARK_COLORS = ['#000000', '#BE0039', '#493AC1', '#9B6825', '#2350A3', '#801E9E']
+const LIGHT_COLORS = ['#FFD635', '#FFF8B8', '#FFFFFF', '#D4D7D9', '#51E9F4', '#7EED56','#FF99AA', '#B44AC0', '#FFA800', '#FF4500', '#898D90', '#3690EA']
+const DARK_COLORS = ['#000000', '#BE0039', '#493AC1', '#9B6825', '#2350A3', '#801E9E', '#00A368']
 
 export function getIncorrectPixels(client) {
     const wrong = [];
@@ -39,7 +39,7 @@ export function getIncorrectPixels(client) {
                 priority = 1;
             }
             else if (LIGHT_COLORS.includes(targetHEX) && DARK_COLORS.includes(currentHEX)) {
-                priority = 16777215
+                priority = 16777215/2
             } else {
                 priority += Math.floor(Math.random() * 10_000); // increase randomness
             
