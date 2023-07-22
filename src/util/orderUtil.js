@@ -20,13 +20,13 @@ export function getIncorrectPixels(client) {
             const g = orderReference.data[i + 1];
             const b = orderReference.data[i + 2];
 
-            const targetHEX = rgbToHex([r, g, b])
+            // const targetHEX = rgbToHex([r, g, b])
 
             const currentR = placeReference.data[i];
             const currentG = placeReference.data[i + 1];
             const currentB = placeReference.data[i + 2];
 
-            const currentHEX = rgbToHex([currentR, currentG, currentB])
+            // const currentHEX = rgbToHex([currentR, currentG, currentB])
 
             
             // this pixel is right
@@ -35,19 +35,19 @@ export function getIncorrectPixels(client) {
             let priority = getPriority(orderPriority.data[i], orderPriority.data[i + 1], orderPriority.data[i + 2], orderPriority.data[i + 3]);
             
             // checks if color NEED to be changed according to selected palette
-            if (LIGHT_COLORS.includes(targetHEX) && LIGHT_COLORS.includes(currentHEX)){
-                priority = 1;
-            }
-            else if (LIGHT_COLORS.includes(targetHEX) && DARK_COLORS.includes(currentHEX)) {
-                priority = 16777215/1.5
-            }
+            // if (LIGHT_COLORS.includes(targetHEX) && LIGHT_COLORS.includes(currentHEX)){
+            //     priority = 1;
+            // }
+            // else if (LIGHT_COLORS.includes(targetHEX) && DARK_COLORS.includes(currentHEX)) {
+            //     priority = 16777215/1.5
+            // }
             priority += Math.floor(Math.random() * 10_000); // increase randomness
         
             wrong.push([[x, y, [r, g, b]], priority]);
         }
     }
 
-    return shuffle(wrong, 'asc').map((i) => i[0]);
+    return shuffle(wrong, 'desc').map((i) => i[0]);
 }
 
 export function getPriority(r, g, b, a) {
