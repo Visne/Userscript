@@ -42,12 +42,9 @@ export function getIncorrectPixels(client) {
             priority += Math.floor(Math.random() * 10_000); // increase randomness
             
             if (LIGHT_COLORS.includes(targetHEX) && LIGHT_COLORS.includes(currentHEX)){
-                if (currentHEX === '#FF4500' || currentHEX === '#FFA800') {
-                    priority = 0
-                } else {
-                    priority = 1
-                }
+                priority = 1
             }
+            
             wrong.push([[x, y, [r, g, b]], priority]);
         }
     }
