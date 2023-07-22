@@ -1,6 +1,6 @@
 import {getCanvasURLS, getPlaceCooldown, placePixel} from './util/placeUtil.js';
 import {loadURLToCanvas} from './util/canvasUtil.js';
-import {getIncorrectPixels} from './util/orderUtil.js';
+import {getIncorrectPixels, rgbToHex} from './util/orderUtil.js';
 import {infoNotification, setHUDBody} from './notifications.js';
 import {lang} from './lang/language.js';
 
@@ -122,11 +122,13 @@ export class CanvasPlacer {
 
 }
 
-function componentToHex(c) {
-    const hex = c.toString(16);
-    return hex.length === 1 ? '0' + hex : hex;
-}
+// MOVED TO orderUtil
 
-function rgbToHex([r, g, b]) {
-    return '#' + componentToHex(r) + componentToHex(g) + componentToHex(b);
-}
+// function componentToHex(c) {
+//     const hex = c.toString(16);
+//     return hex.length === 1 ? '0' + hex : hex;
+// }
+
+// function rgbToHex([r, g, b]) {
+//     return '#' + componentToHex(r) + componentToHex(g) + componentToHex(b);
+// }
