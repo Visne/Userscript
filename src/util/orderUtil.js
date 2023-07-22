@@ -48,7 +48,7 @@ export function getIncorrectPixels(client) {
         }
     }
 
-    return shuffle(wrong, 'desc').map((i) => i[0]);
+    return shuffle(wrong, 'asc').map((i) => i[0]);
 }
 
 export function getPriority(r, g, b, a) {
