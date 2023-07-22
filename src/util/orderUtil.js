@@ -35,14 +35,15 @@ export function getIncorrectPixels(client) {
             let priority = getPriority(orderPriority.data[i], orderPriority.data[i + 1], orderPriority.data[i + 2], orderPriority.data[i + 3]);
             
             // checks if color NEED to be changed according to selected palette
+            if (LIGHT_COLORS.includes(targetHEX) && DARK_COLORS.includes(currentHEX)) {
+                priority = 16777215/1.5
+            }
+
+            priority += Math.floor(Math.random() * 10_000); // increase randomness
+            
             if (LIGHT_COLORS.includes(targetHEX) && LIGHT_COLORS.includes(currentHEX)){
                 priority = 1;
             }
-            else if (LIGHT_COLORS.includes(targetHEX) && DARK_COLORS.includes(currentHEX)) {
-                priority = 16777215/1.5
-            }
-            priority += Math.floor(Math.random() * 10_000); // increase randomness
-        
             wrong.push([[x, y, [r, g, b]], priority]);
         }
     }
