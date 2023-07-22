@@ -39,11 +39,10 @@ export function getIncorrectPixels(client) {
                 priority = 1;
             }
             else if (LIGHT_COLORS.includes(targetHEX) && DARK_COLORS.includes(currentHEX)) {
-                priority = 16777215/2
-            } else {
-                priority += Math.floor(Math.random() * 10_000); // increase randomness
-            
+                priority = 16777215/1.5
             }
+            priority += Math.floor(Math.random() * 10_000); // increase randomness
+        
             wrong.push([[x, y, [r, g, b]], priority]);
         }
     }
