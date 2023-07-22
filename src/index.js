@@ -9,7 +9,8 @@ const client = {
     orderReference: createCanvas('vegan-r-place-userscript-order-reference'),
     orderPriority: createCanvas('vegan-r-place-userscript-order-priority'),
     placeReference: createCanvas('vegan-r-place-userscript-place-reference'),
-    canvasPlacer: new CanvasPlacer()
+    canvasPlacer: new CanvasPlacer(),
+    completion: undefined
 };
 
 createToastifyStyle();
