@@ -1,5 +1,8 @@
 import {shuffle} from 'weighted-shuffle'; // your ide may scream that this is wrong, but it is not
 
+const LIGHT_COLORS = ['#FFD635', '#FFF8B8', '#FFFFFF']
+const DARK_COLORS = ['#000000', '#BE0039', '#493AC1', '#9B6825', '#2350A3', '#801E9E']
+
 export function getIncorrectPixels(client) {
     const wrong = [];
 
@@ -17,15 +20,30 @@ export function getIncorrectPixels(client) {
             const g = orderReference.data[i + 1];
             const b = orderReference.data[i + 2];
 
+            const targetHEX = rgbToHex([r, g, b])
+
             const currentR = placeReference.data[i];
             const currentG = placeReference.data[i + 1];
             const currentB = placeReference.data[i + 2];
 
+            const currentHEX = rgbToHex([currentR, currentG, currentB])
+
+            
             // this pixel is right
             if (r === currentR && g === currentG && b === currentB) continue;
-
+            
             let priority = getPriority(orderPriority.data[i], orderPriority.data[i + 1], orderPriority.data[i + 2], orderPriority.data[i + 3]);
-            priority += Math.floor(Math.random() * 10_000); // increase randomness
+            
+            // checks if color NEED to be changed according to selected palette
+            if (LIGHT_COLORS.includes(targetHEX) && LIGHT_COLORS.includes(currentHEX)){
+                priority = 1;
+            }
+            else if (LIGHT_COLORS.includes(targetHEX) && DARK_COLORS.includes(currentHEX)) {
+                priority = 16777215
+            } else {
+                priority += Math.floor(Math.random() * 10_000); // increase randomness
+            
+            }
             wrong.push([[x, y, [r, g, b]], priority]);
         }
     }
@@ -39,4 +57,13 @@ export function getPriority(r, g, b, a) {
     }
 
     return (r << 16) + (g << 8) + b;
+}
+
+function componentToHex(c) {
+    const hex = c.toString(16).toUpperCase();
+    return hex.length === 1 ? '0' + hex : hex;
+}
+
+export function rgbToHex([r, g, b]) {
+    return '#' + componentToHex(r) + componentToHex(g) + componentToHex(b);
 }
