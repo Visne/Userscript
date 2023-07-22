@@ -17,7 +17,9 @@ export const HUDToast = Toastify({
         borderStyle: 'solid',
         borderImage: 'url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNTAwIiBoZWlnaHQ9IjMwMCI+PHBhdGggZmlsbD0iIzAwNzdjOCIgZD0iTTAsMEg1MDBWMzAwSDB6Ii8+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTAsMEg1MDBMMjUwLDMwMHoiLz48cGF0aCBmaWxsPSIjMDBiMTQwIiBkPSJNMTAwLDBINDAwTDI1MCwxODB6Ii8+PC9zdmc+") 40 20 / 5px / 0 stretch',
         zIndex: 100000,
-        transition: 'none'
+        transition: 'none',
+        destination: 'https://discord.com/channels/959451937181409302/960687226331725854',
+        newWindow: true
     }
 }).showToast();
 HUDToast.title = HUDToast.body = '';
