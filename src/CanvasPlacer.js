@@ -62,15 +62,17 @@ export class CanvasPlacer {
             client.ws.enableCapability('placeNow');
             infoNotification(lang().TOAST_PLACING_PIXEL);
             try {
-                const canvases = await getCanvasURLS(client, [1, 2, 4, 5]);
+                const canvases = await getCanvasURLS(client, [0, 1, 2, 3, 4, 5]);
                 client.placeReference.clearRect(0, 0, client.placeReference.canvas.width, client.placeReference.canvas.height);
 
                 // todo: shove in array
                 await Promise.all([
-                    loadURLToCanvas(client.placeReference, canvases[0], 1000, 0),
-                    loadURLToCanvas(client.placeReference, canvases[1], 2000, 0),
-                    loadURLToCanvas(client.placeReference, canvases[2], 1000, 1000),
-                    loadURLToCanvas(client.placeReference, canvases[3], 2000, 1000)
+                    loadURLToCanvas(client.placeReference, canvases[0], 0, 0),
+                    loadURLToCanvas(client.placeReference, canvases[1], 1000, 0),
+                    loadURLToCanvas(client.placeReference, canvases[2], 2000, 0),
+                    loadURLToCanvas(client.placeReference, canvases[3], 0, 1000),
+                    loadURLToCanvas(client.placeReference, canvases[4], 1000, 1000),
+                    loadURLToCanvas(client.placeReference, canvases[5], 2000, 1000)
                 ]);
 
                 const wrongPixels = getIncorrectPixels(client);
@@ -99,11 +101,13 @@ export class CanvasPlacer {
                         canvasY %= 1000;
                         infoNotification(lang().TOAST_PLACING_PIXEL_AT.replace('{x}', displayX).replace('{y}', displayY));
 
-                        let delay = await placePixel(client, canvasX, canvasY, pi, canvas);
-                        if (typeof delay === 'number') {
+                        let [placed, delay] = await placePixel(client, canvasX, canvasY, pi, canvas);
+                        if (delay) {
                             this.cooldownEndsAt = delay;
                             let timeout = Math.max(this.cooldownEndsAt - Date.now(), 1000);
-                            infoNotification(lang().TOAST_PLACED_PIXEL_AT.replace('{x}', displayX).replace('{y}', displayY), null, timeout);
+                            if (placed) {
+                                infoNotification(lang().TOAST_PLACED_PIXEL_AT.replace('{x}', displayX).replace('{y}', displayY), null, timeout);
+                            }
                             infoNotification(lang().TOAST_PLACE_PIXELS_IN.replace('{time}', new Date(this.cooldownEndsAt).toLocaleTimeString()), null, timeout);
                         }
 
