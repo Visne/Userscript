@@ -103,7 +103,7 @@ export class CanvasPlacer {
 
                         let delay = await placePixel(client, canvasX, canvasY, pi, canvas);
                         if (typeof delay === 'number') {
-                            console.log(`placed pixel at [${canvasX}, ${canvasY}]. Color: ${hex}`)
+                            console.log(`placed pixel at [${displayX}, ${displayY}]. Color: ${hex === '#000000' ? 'BLACK' : 'WHITE'}`)
                             this.cooldownEndsAt = delay;
                             let timeout = Math.max(this.cooldownEndsAt - Date.now(), 1000);
                             infoNotification(lang().TOAST_PLACED_PIXEL_AT.replace('{x}', displayX).replace('{y}', displayY), null, timeout);
