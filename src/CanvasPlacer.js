@@ -1,6 +1,6 @@
 import {getCanvasURLS, getPlaceCooldown, placePixel} from './util/placeUtil.js';
 import {loadURLToCanvas} from './util/canvasUtil.js';
-import {getIncorrectPixels} from './util/orderUtil.js';
+import {getIncorrectPixels, rgbToHex} from './util/orderUtil.js';
 import {infoNotification, setHUDBody} from './notifications.js';
 import {lang} from './lang/language.js';
 
@@ -103,6 +103,7 @@ export class CanvasPlacer {
 
                         let [placed, delay] = await placePixel(client, canvasX, canvasY, pi, canvas);
                         if (delay) {
+                            console.log(`placed pixel at [${displayX}, ${displayY}]. Color: ${hex === '#000000' ? 'BLACK' : 'WHITE'}`)
                             this.cooldownEndsAt = delay;
                             let timeout = Math.max(this.cooldownEndsAt - Date.now(), 1000);
                             if (placed) {
@@ -130,11 +131,13 @@ export class CanvasPlacer {
 
 }
 
-function componentToHex(c) {
-    const hex = c.toString(16);
-    return hex.length === 1 ? '0' + hex : hex;
-}
+// MOVED TO orderUtil
 
-function rgbToHex([r, g, b]) {
-    return '#' + componentToHex(r) + componentToHex(g) + componentToHex(b);
-}
+// function componentToHex(c) {
+//     const hex = c.toString(16);
+//     return hex.length === 1 ? '0' + hex : hex;
+// }
+
+// function rgbToHex([r, g, b]) {
+//     return '#' + componentToHex(r) + componentToHex(g) + componentToHex(b);
+// }
